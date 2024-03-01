@@ -1,37 +1,37 @@
 #include <iostream>
 #include <cstdlib>
-#include <map>
-#include <random>
-#include <time.h>
 #include <vector>
+
 #include "defines.h"
+#include "core/utils.h"
 
 int main() {
-    // srand(time(0));
+    constexpr u32 P = 50; // Number of vectors we want to encode
 
     // create the 50 patterns
     std::vector<std::vector<i32> > patterns;
-    patterns.resize(50);
+    patterns.resize(P);
     
     // Create 50 random vectors of length 100 of bipolar {-1,1} values
-    std::random_device rd;  
-    std::mt19937 gen(rd());
-    std::discrete_distribution<i32> n({1, 1});
-    std::map<i32, i32> m;
-
-    for (i32 i = 0; i < 100; i++) {
-    
+    for (std::size_t x = 0; x < P; x++) {
+        std::vector<i32> v;
+        for (std::size_t i = 0; i < 100; i++) {
+            // If the number generated was 0 then make it -1. Otherwise keep it
+            v.push_back(core::rng());
+        }
+        patterns.push_back(v);
     }
 
-//    for (int i = 0; i < 10000; i++) {
-//        patters
-//        ++m[n(gen)];
-//    }
-//
-//    for (const auto& [num, count] : m) {
-//        std::cout << num << " generated " << count << " times\n";
+    
+
+//    for (const auto& p : patterns) {
+//        for (const auto& i : p) {
+//            std::cout << i << " ";
+//        }
+//        std::cout << "\n";
 //    }
 
+    std::cout << "Pattern Count: " << patterns.size() << "\n";
 
     return 0; 
 }
