@@ -1,0 +1,5 @@
+-Inetwork/src
+-Iserver
+-xc++
+-std=c++20
+-g
