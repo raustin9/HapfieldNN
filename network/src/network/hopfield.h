@@ -8,12 +8,12 @@ namespace hopfield {
 
 class hopfield {
     public:
-        static hopfield create_new(u32 size); // builder function
+        static hopfield create_new(u32 neuron_count); // builder function
         ~hopfield();
 
 
         bool imprint(const std::string& pattern);
-        bool imprint(const std::vector<i32>& pattern);
+        bool imprint(const std::vector<i32>& pattern, u32 k);
         std::string get_output();
 
         void clear();
