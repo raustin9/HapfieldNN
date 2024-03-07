@@ -24,11 +24,11 @@ scaffold:
 	@echo Done.
 
 bin/network: $(OBJ_FILES)
-	$(CC) $(CFLAGS) $(OBJ_FILES) -o $@ $(LDFLAGS)
+	@$(CC) $(CFLAGS) $(OBJ_FILES) -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)/%.cc.o: %.cc
 	@echo $<...
-	$(CC) $< $(CFLAGS) -c -o $@ $(INCLUDES) $(LDFLAGS)
+	@$(CC) $< $(CFLAGS) -c -o $@ $(INCLUDES) $(LDFLAGS)
 
 
 # obj/%.o: src/%.cc
