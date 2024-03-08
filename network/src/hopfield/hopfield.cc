@@ -41,10 +41,11 @@ namespace hopfield {
     /// @brief Imprint a pattern of length m_n to the netowrk
     /// @param pattern The pattern to imprint
     /// @returns Whether it was successful
-    bool hopfield::imprint_patterns(const std::vector<std::vector<i32>>& patterns) {
+    bool hopfield::imprint_patterns(const std::vector<std::vector<i32> >& patterns) {
         m_patterns_remembered = patterns;
         if (patterns[0].size() != m_n) {
-            char msg[50];
+            std::printf("got here\n");
+            char msg[100];
             std::sprintf(msg, "Expected %u dimension of pattern. Got %lu", m_n, patterns[0].size());
             throw std::runtime_error(msg);
         }
