@@ -13,7 +13,7 @@ OBJ_FILES := $(SRC_FILES:%=$(OBJ_DIR)/%.o)
 all: scaffold bin/network
 	
 run: scaffold bin/network 
-	./bin/network
+	./bin/network -P 50 -N 100 --num-experiments 5
 
 clean:
 	rm -rf bin/* obj/* 

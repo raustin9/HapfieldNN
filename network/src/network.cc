@@ -32,9 +32,9 @@ int main(i32 argc, char** argv) {
 
 
     hopfield::hopfield hf = hopfield::hopfield::create_new(neuron_count); // create 100x100 hfnn
-    std::vector<std::vector<i32> > patterns; // the 50 bipolar vectors to imprint
 
     // Create 50 random vectors of length 100 of bipolar {-1,1} values
+    std::vector<std::vector<i32> > patterns; // the 50 bipolar vectors to imprint
     for (std::size_t x = 0; x < P; x++) {
         std::vector<i32> v;
         for (std::size_t i = 0; i < neuron_count; i++) {
@@ -44,6 +44,7 @@ int main(i32 argc, char** argv) {
     }
     std::cout << "Pattern Count: " << patterns.size() << "\n";
     std::cout << "Pattern Dimension: " << patterns[0].size() << "\n";
+
 
     // Imprint the patterns to the network
     if (!hf.imprint_patterns(patterns)){
