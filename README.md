@@ -1,2 +1,2 @@
 # Hapfield Network
-This is an implementation of a Hapfield neural network in C++
+This is an implementation of a Hopfeld neural network in C++.

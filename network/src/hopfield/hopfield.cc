@@ -1,14 +1,12 @@
 #include "hopfield.h"
 
-#include <cmath>
 #include <cstdio>
-#include <sstream>
 #include <stdexcept>
 
 namespace hopfield {
 
     /// @brief Constructor [private]
-    hopfield::hopfield() : m_memorized(0), m_method("hebbian"), m_input(0), m_weights(0) {
+    hopfield::hopfield() : m_method("hebbian"), m_weights(0) {
         
     }
     
@@ -36,6 +34,7 @@ namespace hopfield {
     /// @param pattern The pattern to imprint
     /// @returns Whether it was successful
     bool hopfield::imprint_patterns(const std::vector<std::vector<i32>>& patterns) {
+        m_patterns_remembered = patterns;
         if (patterns[0].size() != m_n) {
             char msg[50];
             std::sprintf(msg, "Expected %u dimension of pattern. Got %lu", m_n, patterns[0].size());
@@ -63,20 +62,38 @@ namespace hopfield {
         // Make sure it is reflected
         for (u64 i = 0; i < m_n; i++) {
             for (u64 j = 0; j < m_n; j++) {
-                m_weights[j][i] = m_weights[i][j];
+                if (m_weights[j][i] != m_weights[i][j]) {
+                    return false;
+                }
             }
         }
 
+
         return true; 
     }
+
 
     /// @brief Print the weight matrix of the netowrk
     void hopfield::print_weights() {
         for (const auto& row : m_weights) {
             for (const auto& item : row) {
-                std::printf("%lf ", item);
+                std::printf("%.3lf ", item);
             }
             std::printf("\n");
+        }
+    }
+
+
+    /// @brief Print each of the patterns the netowrk is remembering
+    void hopfield::print_patterns() {
+        std::size_t i = 0;
+        for (const auto& pattern : m_patterns_remembered) {
+            std::printf("Pattern %lu:", i);
+            for (const auto& item : pattern) {
+                std::printf(" %d", item);
+            }
+            std::printf("\n");
+            i++;
         }
     }
 }

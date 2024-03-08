@@ -4,7 +4,7 @@
 
 #include "defines.h"
 #include "core/utils.h"
-#include "network/hopfield.h"
+#include "hopfield/hopfield.h"
 
 int main() {
     constexpr u32 P = 50; // Number of vectors we want to encode
@@ -24,9 +24,11 @@ int main() {
     std::cout << "Pattern Dimension: " << patterns[0].size() << "\n";
 
     // Imprint the patterns to the network
-    hf.imprint_patterns(patterns);
-    hf.print_weights();
-
+    if (!hf.imprint_patterns(patterns)){
+        std::printf("Invalid pattern\n");
+    }
+    // hf.print_weights();
+    // hf.print_patterns();
 
     return 0; 
 }
