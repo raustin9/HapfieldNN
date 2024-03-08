@@ -16,11 +16,12 @@ class hopfield {
         void print_weights();
         void print_patterns();
         void clear();
+        bool test_all();
         std::string get_output();
-
 
     private:
         hopfield();
+        i32 _sigma(f64 h);
         u32 m_n;
         std::string m_method;
         std::vector<std::vector<f64> > m_weights;

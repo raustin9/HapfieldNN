@@ -5,9 +5,17 @@
 
 namespace hopfield {
 
-    /// @brief Constructor [private]
+    /// [private]
+    /// @brief Constructor 
     hopfield::hopfield() : m_method("hebbian"), m_weights(0) {
         
+    }
+
+
+    /// [private]
+    /// @brief Sigma compare function for node in network
+    i32 hopfield::_sigma(f64 h) {
+        return h < 0 ? -1 : 1;
     }
     
     /// @brief Destructor
@@ -73,6 +81,25 @@ namespace hopfield {
     }
 
 
+    /// @brief Test all inputs to see if any are unstable
+    bool hopfield::test_all() {
+        for (const auto& pattern : m_patterns_remembered) {
+            for (u64 i = 0; i < m_n; i++) {
+                f64 h_i = 0;
+                for (u64 j = 0; j < m_n; j++) {
+                    h_i += m_weights[i][j] * pattern[j];
+                }
+                f64 s_prime = _sigma(h_i);
+                if (s_prime != pattern[i]) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+
     /// @brief Print the weight matrix of the netowrk
     void hopfield::print_weights() {
         for (const auto& row : m_weights) {
@@ -95,5 +122,14 @@ namespace hopfield {
             std::printf("\n");
             i++;
         }
+    }
+
+
+    /// @brief Clear the network
+    void hopfield::clear() {
+        m_weights.clear();
+        m_network.clear();
+        m_patterns_remembered.clear();
+        m_n = 0;
     }
 }

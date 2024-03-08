@@ -15,7 +15,6 @@ int main() {
     for (std::size_t x = 0; x < P; x++) {
         std::vector<i32> v;
         for (std::size_t i = 0; i < 100; i++) {
-            // If the number generated was 0 then make it -1. Otherwise keep it
             v.push_back(core::rng());
         }
         patterns.push_back(v);
@@ -26,6 +25,12 @@ int main() {
     // Imprint the patterns to the network
     if (!hf.imprint_patterns(patterns)){
         std::printf("Invalid pattern\n");
+    }
+
+    if (!hf.test_all()) {
+        std::printf("UNSTABLE\n");
+    } else {
+        std::printf("SUCCESS\n");
     }
     // hf.print_weights();
     // hf.print_patterns();
