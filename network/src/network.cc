@@ -59,7 +59,7 @@ int main(i32 argc, char** argv) {
                 hopfield::hopfield hf = hopfield::hopfield::create_new(neuron_count);
                 hf.imprint_patterns(p);
                 if (hf.test_all()) {
-                    stable_count[y]++;
+                    stable_count[x]++;
                 }
             }
         }
