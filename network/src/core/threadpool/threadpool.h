@@ -14,7 +14,7 @@
 #include <queue>
 #include <functional>
 
-namespace thread_pool {
+namespace vthread {
 
 class ThreadPool {
 public:

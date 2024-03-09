@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-std=c++20
 INCLUDES=-Inetwork/src -Inetwork
-LDFLAGS=
+LDFLAGS=-pthread
 OBJ_DIR := obj
 ASSEMBLY := network
 

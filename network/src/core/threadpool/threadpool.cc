@@ -1,7 +1,7 @@
 #include "threadpool.h"
 #include "defines.h"
 
-namespace thread_pool {
+namespace vthread {
 
 /// @brief Constructor
 ThreadPool::ThreadPool() {
