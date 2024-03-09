@@ -101,6 +101,24 @@ namespace hopfield {
     }
 
 
+    /// @brief Test inputs up to the specified index
+    bool hopfield::test_at(u64 index) {
+        const auto& pattern = m_patterns_remembered[index];
+        for (u64 i = 0; i < m_n; i++) {
+            f64 h_i = 0;
+            for (u64 j = 0; j < m_n; j++) {
+                h_i += m_weights[i][j] * pattern[j];
+            }
+            f64 s_prime = _sigma(h_i);
+            if (s_prime != pattern[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
     /// @brief Print the weight matrix of the netowrk
     void hopfield::print_weights() {
         for (const auto& row : m_weights) {

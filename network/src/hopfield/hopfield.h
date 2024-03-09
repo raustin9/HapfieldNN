@@ -12,11 +12,11 @@ class hopfield {
 
         static hopfield create_new(u32 neuron_count);
         bool imprint_patterns(const std::vector<std::vector<i32> >& pattern);
-        bool test();
         void print_weights();
         void print_patterns();
         void clear();
         bool test_all();
+        bool test_at(u64 index);
         std::string get_output();
 
     private:
